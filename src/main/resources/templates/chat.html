@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Boot WebSocket</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+
+    <!-- https://cdnjs.com/libraries/sockjs-client -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+    <!-- https://cdnjs.com/libraries/stomp.js/ -->
+    <script  src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+
+</head>
+<body>
+<style>
+    #chess div span {
+        font-size: 55px;
+        color: #fff;
+    }
+</style>
+<div id="chess" style="text-align: center;">
+    <button onclick="sendBoardAction()">Test Connection</button>
+    <br>
+    <br>
+    <!--figure_white-->♟ ♜♞♝♚♛
+    <div onclick="sendBoardAction('A8')"><span id="A8">♟</span></div><div onclick="sendBoardAction('B8')"><span id="B8"></span></div><div onclick="sendBoardAction('C8')"><span id="C8"></span></div><div onclick="sendBoardAction('D8')"><span id="D8"></span></div><div onclick="sendBoardAction('E8')"><span id="E8"></span></div><div onclick="sendBoardAction('F8')"><span id="F8"></span></div><div onclick="sendBoardAction('G8')"><span id="G8"></span></div><div onclick="sendBoardAction('H8')"><span id="H8"></span></div>
+    <div onclick="sendBoardAction('A7')"><span id="A7">♟</span></div><div onclick="sendBoardAction('B7')"><span id="B7"></span></div><div onclick="sendBoardAction('C7')"><span id="C7"></span></div><div onclick="sendBoardAction('D7')"><span id="D7"></span></div><div onclick="sendBoardAction('E7')"><span id="E7"></span></div><div onclick="sendBoardAction('F7')"><span id="F7"></span></div><div onclick="sendBoardAction('G7')"><span id="G7"></span></div><div onclick="sendBoardAction('H7')"><span id="H7"></span></div>
+    <div onclick="sendBoardAction('A6')"><span id="A6"></span></div><div onclick="sendBoardAction('B6')"><span id="B6"></span></div><div onclick="sendBoardAction('C6')"><span id="C6"></span></div><div onclick="sendBoardAction('D6')"><span id="D6"></span></div><div onclick="sendBoardAction('E6')"><span id="E6"></span></div><div onclick="sendBoardAction('F6')"><span id="F6"></span></div><div onclick="sendBoardAction('G6')"><span id="G6"></span></div><div onclick="sendBoardAction('H6')"><span id="H6"></span></div>
+    <div onclick="sendBoardAction('A5')"><span id="A5"></span></div><div onclick="sendBoardAction('B5')"><span id="B5"></span></div><div onclick="sendBoardAction('C5')"><span id="C5"></span></div><div onclick="sendBoardAction('D5')"><span id="D5"></span></div><div onclick="sendBoardAction('E5')"><span id="E5"></span></div><div onclick="sendBoardAction('F5')"><span id="F5"></span></div><div onclick="sendBoardAction('G5')"><span id="G5"></span></div><div onclick="sendBoardAction('H5')"><span id="H5"></span></div>
+    <div onclick="sendBoardAction('A4')"><span id="A4"></span></div><div onclick="sendBoardAction('B4')"><span id="B4"></span></div><div onclick="sendBoardAction('C4')"><span id="C4"></span></div><div onclick="sendBoardAction('D4')"><span id="D4"></span></div><div onclick="sendBoardAction('E4')"><span id="E4"></span></div><div onclick="sendBoardAction('F4')"><span id="F4"></span></div><div onclick="sendBoardAction('G4')"><span id="G4"></span></div><div onclick="sendBoardAction('H4')"><span id="H4"></span></div>
+    <div onclick="sendBoardAction('A3')"><span id="A3"></span></div><div onclick="sendBoardAction('B3')"><span id="B3"></span></div><div onclick="sendBoardAction('C3')"><span id="C3"></span></div><div onclick="sendBoardAction('D3')"><span id="D3"></span></div><div onclick="sendBoardAction('E3')"><span id="E3"></span></div><div onclick="sendBoardAction('F3')"><span id="F3"></span></div><div onclick="sendBoardAction('G3')"><span id="G3"></span></div><div onclick="sendBoardAction('H3')"><span id="H3"></span></div>
+    <div onclick="sendBoardAction('A2')"><span id="A2"></span></div><div onclick="sendBoardAction('B2')"><span id="B2"></span></div><div onclick="sendBoardAction('C2')"><span id="C2"></span></div><div onclick="sendBoardAction('D2')"><span id="D2"></span></div><div onclick="sendBoardAction('E2')"><span id="E2"></span></div><div onclick="sendBoardAction('F2')"><span id="F2"></span></div><div onclick="sendBoardAction('G2')"><span id="G2"></span></div><div onclick="sendBoardAction('H2')"><span id="H2"></span></div>
+    <div onclick="sendBoardAction('A1')"><span id="A1"></span></div><div onclick="sendBoardAction('B1')"><span id="B1"></span></div><div onclick="sendBoardAction('C1')"><span id="C1"></span></div><div onclick="sendBoardAction('D1')"><span id="D1"></span></div><div onclick="sendBoardAction('E1')"><span id="E1"></span></div><div onclick="sendBoardAction('F1')"><span id="F1"></span></div><div onclick="sendBoardAction('G1')"><span id="G1"></span></div><div onclick="sendBoardAction('H1')"><span id="H1"></span></div>
+    <!--
+    <div onclick="sendBoardAction('a2')"><span id="a2" class="figure">♟</span></div>        <div><span class="figure">♟</span></div><div><span class="figure">♟</span></div><div><span class="figure">♟</span></div><div><span class="figure">♟</span></div><div><span class="figure">♟</span></div><div><span class="figure">♟</span></div><div><span class="figure">♟</span></div>
+    <div onclick="sendBoardAction('a1')"><span id="a1" class="figure">♜</span></div>        <div><span class="figure">♞</span></div><div><span class="figure">♝</span></div><div><span class="figure">♛</span></div><div><span class="figure">♚</span></div><div><span class="figure">♝</span></div><div><span class="figure">♞</span></div><div><span class="figure">♜</span></div>
+    -->
+</div>
+<style>
+    .figure {
+        font-size: 55px;
+    }
+    .figure_white {
+        color: #fff;
+    }
+    .figure_black {
+        color: #000;
+    }
+    #chess div {
+        width:75px;height:75px;
+        float:left;
+        background-color: #c1bcbc;
+    }
+    #chess div:hover {
+        border: 3px solid #8d0000;
+        cursor: pointer;
+    }
+
+    #chess div:nth-of-type(16n+16),
+    #chess div:nth-of-type(16n+14),
+    #chess div:nth-of-type(16n+12),
+    #chess div:nth-of-type(16n+10),
+    #chess div:nth-of-type(16n+7),
+    #chess div:nth-of-type(16n+5),
+    #chess div:nth-of-type(16n+3),
+    #chess div:nth-of-type(16n+1){
+        background-color: #414141;
+    }
+
+    #chess div:nth-of-type(8n+1){
+        clear:left;
+    }
+</style>
+
+<div id="chat-container" style="
+     alignment: right;
+     right: 0;
+     margin-right: 0;
+     margin-top: 0;">
+
+    <div class="chat-header">
+        <div class="user-container">
+            <span id="username" th:utext="${username}"></span>
+            <a th:href="@{/logout}">Logout</a>
+        </div>
+        <h3>Spring WebSocket</h3>
+    </div>
+
+    <hr/>
+
+    <div id="connecting">Connecting...</div>
+    <ul id="messageArea">
+    </ul>
+    <form id="messageForm" name="messageForm">
+        <div class="input-message">
+            <input type="text" id="message" autocomplete="off"
+                   placeholder="Type a message..."/>
+            <button type="submit">Send</button>
+        </div>
+    </form>
+</div>
+
+<script th:src="@{/js/main.js}"></script>
+
+
+
+</body>
+</html>

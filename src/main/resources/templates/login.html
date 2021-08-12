@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <!--<link rel="stylesheet" href="/css/main.css" />-->
+</head>
+<body>
+
+<svg class="figure-1" width="1056" height="577" viewBox="0 0 1056 577" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g filter="url(#filter0_f)">
+        <path d="M435.5 15C436.881 15 438 13.8807 438 12.5C438 11.1193 436.881 10 435.5 10C434.119 10 433 11.1193 433 12.5C433 13.8807 434.119 15 435.5 15Z" fill="white"/>
+        <path d="M1054 72C1054 73.1046 1053.1 74 1052 74C1050.9 74 1050 73.1046 1050 72C1050 70.8954 1050.9 70 1052 70C1053.1 70 1054 70.8954 1054 72Z" fill="white"/>
+        <path d="M962 204.5C962 205.881 960.881 207 959.5 207C958.119 207 957 205.881 957 204.5C957 203.119 958.119 202 959.5 202C960.881 202 962 203.119 962 204.5Z" fill="white"/>
+        <path d="M796 357C797.105 357 798 356.105 798 355C798 353.895 797.105 353 796 353C794.895 353 794 353.895 794 355C794 356.105 794.895 357 796 357Z" fill="white"/>
+        <path d="M259 431.5C259 432.881 257.881 434 256.5 434C255.119 434 254 432.881 254 431.5C254 430.119 255.119 429 256.5 429C257.881 429 259 430.119 259 431.5Z" fill="white"/>
+        <path d="M1027 501.5C1027 502.328 1026.33 503 1025.5 503C1024.67 503 1024 502.328 1024 501.5C1024 500.672 1024.67 500 1025.5 500C1026.33 500 1027 500.672 1027 501.5Z" fill="white"/>
+        <path d="M388.5 258C389.328 258 390 257.328 390 256.5C390 255.672 389.328 255 388.5 255C387.672 255 387 255.672 387 256.5C387 257.328 387.672 258 388.5 258Z" fill="white"/>
+    </g>
+    <g filter="url(#filter1_f)">
+        <path d="M550 550C550 769.257 372.257 947 153 947C-66.257 947 -244 769.257 -244 550C-244 330.743 -66.257 153 153 153C372.257 153 550 330.743 550 550Z" fill="white" fill-opacity="0.05"/>
+        <path d="M235 249.5C235 381.772 127.772 489 -4.5 489C-136.772 489 -244 381.772 -244 249.5C-244 117.228 -136.772 10 -4.5 10C127.772 10 235 117.228 235 249.5Z" fill="white" fill-opacity="0.05"/>
+    </g>
+    <defs>
+        <filter id="filter0_f" x="252" y="8" width="804" height="497" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+            <feGaussianBlur stdDeviation="1" result="effect1_foregroundBlur"/>
+        </filter>
+        <filter id="filter1_f" x="-254" y="0" width="814" height="957" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+            <feGaussianBlur stdDeviation="5" result="effect1_foregroundBlur"/>
+        </filter>
+    </defs>
+</svg>
+
+<div id="login-container">
+    <h1 class="logon-label">Enter your username:</h1>
+    <form class="form" id="loginForm" name="loginForm" method="POST">
+        <input class="logon-input" type="text" name="username" />
+        <button class="logon-button" type="submit"><span class="logon-span">Join chat!</span></button>
+    </form>
+</div>
+</body>
+
+<style>
+    #login-container {
+        position: absolute;
+        left: 34%;
+        right: 34%;
+        top: 38%;
+        bottom: 38%;
+        width: 32%;
+        height: 24%;
+
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 5px;
+    }
+
+    #login-container .logon-span {
+        left: calc(50% - 150px/2 + 0.5px);
+        top: calc(50% - 16px/2 + 47px);
+
+        font-family: Russo One;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 24px;
+        align-items: center;
+        text-align: center;
+        color: #FFFFFF;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    #login-container .logon-label {
+        position: absolute;
+        left: 9%;
+        right: 9%;
+        top: 16%;
+        bottom: 66%;
+        width: 82%;
+        height: 28%;
+
+        font-family: Russo One;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 22px;
+        line-height: 27px;
+        text-align: center;
+
+        color: #FFFFFF;
+    }
+    #login-container .logon-button {
+        position: absolute;
+        justify-content: center;
+        text-align: center;
+
+
+        left: 31%;
+        right: 31%;
+        top: 69.44%;
+        bottom: 8.33%;
+        width: 38%;
+        height: 23%;
+
+        background: radial-gradient(193.15% 181.07% at 55% 58.75%, #000000 0%, #e4204f 98.03%);
+        box-shadow: inset 0px 0px 2px 2px rgba(0, 0, 0, 0.4);
+        border-radius: 5px;
+    }
+    #login-container .logon-input {
+        position: absolute;
+        left: 9%;
+        right: 9%;
+        top: 41.67%;
+        bottom: 41.67%;
+        width: 82%;
+        height: 17%;
+
+        background: #FFFFFF;
+        box-shadow: inset 0px 0px 11px -2px rgba(0, 0, 0, 0.7);
+        border-radius: 2px;
+    }
+    body {
+        margin: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: url("bg3.svg") no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        //background: radial-gradient(64.35% 71.2% at 50% 50%, rgba(29, 12, 94, 0.5) 0%, rgba(0, 0, 0, 0) 100%), radial-gradient(77.7% 66.67% at 50% 50%, #A84561 0%, #5B071F 45.31%, #0A050B 100%);
+    }
+
+    .figure-1 {
+
+        width: 1298px;
+        height: 937px;
+        left: -244px;
+        top: 183px;
+    }
+    @media (max-width: 815px) {
+        #login-container .logon-label {
+            font-size: 16px;
+        }
+        #login-container .logon-span {
+            font-size: 15px;
+        }
+    }
+</style>
+</html>
